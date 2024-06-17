@@ -8,6 +8,8 @@ import re
 import io
 import struct
 import json
+import shutil
+import signal
 from glob import glob
 from pathlib import Path
 
@@ -334,6 +336,11 @@ album_order = [[{'name': 'SE_GA_', 'source': ''},
   {'name': 'Retire', 'source': ''},
   {'name': 'Continue', 'source': ''}]]
 
+def signal_handler(sig, frame):
+    print('\nCancelled')
+    # Perform any cleanup here
+    sys.exit(0)
+
 def get_track_number(file_name):
     for i in range(0, len(album_order)):
         for j in range(0, len(album_order[i])):
@@ -418,6 +425,7 @@ def valid_positive_int(value):
     return ivalue
 
 if __name__ == "__main__":
+    signal.signal(signal.SIGINT, signal_handler)
     parser = argparse.ArgumentParser(description="Extract music from a PK3 file.")
     
     # Mandatory arguments
@@ -548,19 +556,22 @@ if __name__ == "__main__":
                                         "-of", "default=noprint_wrappers=1:nokey=1",
                                         os.path.join(output_location, "tmp.wav")
                                 ]
-                                print('Starting: ', fparts[0]+fext, '=>', song_name)
+                                if verbose:
+                                    cols = shutil.get_terminal_size().columns
+                                    print("=" * cols)
+                                print('Converting: \t', fparts[0]+fext, '=>', song_name)
                                 if verbose:
                                     print(key, json.dumps(songs[key], indent=4))
                                 try:
                                     if verbose:
-                                        print(' '.join(command1))
+                                        print("Running: \t", ' '.join(command1))
                                     subprocess.run(command1, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                                     if verbose:
-                                        print(' '.join(command2))
+                                        print("Running: \t", ' '.join(command2))
                                     result = subprocess.run(command2, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                                     sample_rate = result.stdout.strip()
                                     if verbose:
-                                        print("Sample Rate:", sample_rate)
+                                        print("Sample Rate: \t", sample_rate)
                                     asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
                                     command3 = [
                                             "ffmpeg",
@@ -578,46 +589,54 @@ if __name__ == "__main__":
                                             song_name
                                     ]
                                     if verbose:
-                                        print(' '.join(command3))
+                                        print("Running: \t", ' '.join(command3))
                                     subprocess.run(command3, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                                     os.remove(os.path.join(output_location, "tmp.wav"))
-                                    print('done\n')
-                                except:
-                                    command2 = [
-                                            "ffprobe",
-                                            "-v", "error",
-                                            "-select_streams", "a:0",
-                                            "-show_entries", "stream=sample_rate",
-                                            "-of", "default=noprint_wrappers=1:nokey=1",
-                                            os.path.join(output_location, "tmp"+fext)
-                                    ]
                                     if verbose:
-                                        print(' '.join(command2))
-                                    result = subprocess.run(command2, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                                    sample_rate = result.stdout.strip()
-                                    if verbose:
-                                        print("Sample Rate:", sample_rate)
-                                    asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
-                                    # print("Sample Rate:", sample_rate)
-                                    command3 = [
-                                            "ffmpeg",
-                                            "-i", os.path.join(output_location, "tmp"+fext),
-                                            "-metadata", f'title={title}',
-                                            "-metadata", f'artist={artist}',
-                                            "-metadata", f'track={track_num}',
-                                            "-metadata", f'disc={disc_num}',
-                                            "-metadata", f'date={release_date}',
-                                            "-metadata", f'album_artist=Kart Krew',
-                                            "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
-                                            "-filter:a", f'volume={volume}{asetrate}',
-                                            "-y",
-                                            "-q:a", "0",
-                                            song_name
-                                    ]
-                                    if verbose:
-                                        print(' '.join(command3))
-                                    subprocess.run(command3, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                                    print('done\n')
-                                break
+                                        print('done')
+                                except Exception as e:
+                                    print('Error: ', "Could not convert with vgmstream-cli")
+                                    print('Warning: ',"Falling back to ffmpeg")
+                                    try:
+                                        command2 = [
+                                                "ffprobe",
+                                                "-v", "error",
+                                                "-select_streams", "a:0",
+                                                "-show_entries", "stream=sample_rate",
+                                                "-of", "default=noprint_wrappers=1:nokey=1",
+                                                os.path.join(output_location, "tmp"+fext)
+                                        ]
+                                        if verbose:
+                                            print("Running: \t", ' '.join(command2))
+                                        result = subprocess.run(command2, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                                        sample_rate = result.stdout.strip()
+                                        if verbose:
+                                            print("Sample Rate: \t", sample_rate)
+                                        asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
+                                        # print("Sample Rate:", sample_rate)
+                                        command3 = [
+                                                "ffmpeg",
+                                                "-i", os.path.join(output_location, "tmp"+fext),
+                                                "-metadata", f'title={title}',
+                                                "-metadata", f'artist={artist}',
+                                                "-metadata", f'track={track_num}',
+                                                "-metadata", f'disc={disc_num}',
+                                                "-metadata", f'date={release_date}',
+                                                "-metadata", f'album_artist=Kart Krew',
+                                                "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
+                                                "-filter:a", f'volume={volume}{asetrate}',
+                                                "-y",
+                                                "-q:a", "0",
+                                                song_name
+                                        ]
+                                        if verbose:
+                                            print("Running: \t", ' '.join(command3))
+                                        subprocess.run(command3, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                                        if verbose:
+                                            print('done')
+                                    except:
+                                        print('Error: \t', 'Could not convert with ffmpeg. Exiting program')
+                                        sys.exit(0)
+                                # break
 
                     os.remove(os.path.join(output_location, "tmp"+fext))
