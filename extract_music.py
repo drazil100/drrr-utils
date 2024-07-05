@@ -350,6 +350,155 @@ album_order = [
     ]
 ]
 
+filenames = [
+    "3_Color_Drive_Zone.mp3",
+    "Ancient_Tomb_Zone.mp3",
+    "Arid_Sands.mp3",
+    "Armored_Armadillo.mp3",
+    "Aurora_Atoll_Zone.mp3",
+    "Bad_Taste_Aquarium.mp3",
+    "Barren_Badlands_Zone.mp3",
+    "Battle_Finish_(Cool).mp3",
+    "Battle_Finish_(Lose).mp3",
+    "Battle_Finish_(Win).mp3",
+    "Black_Bliss_Zone.mp3",
+    "Blue_Mountain_Classic.mp3",
+    "Blue_Mountain_Zone.mp3",
+    "Boiling_Bedrock_Zone.mp3",
+    "Bumper_Carts.mp3",
+    "CD_Special_Stage_1.mp3",
+    "CK_Chao_Circuit_1.mp3",
+    "CK_Chao_Circuit_2.mp3",
+    "CK_Cloud_Tops_1.mp3",
+    "CK_Cloud_Tops_2.mp3",
+    "CK_Dungeon_Maze.mp3",
+    "CK_Regal_Raceway.mp3",
+    "Canyon_Rush_Zone.mp3",
+    "Casino_Resort_Zone.mp3",
+    "Challenger_Joins.mp3",
+    "Chemical_Facility_Zone.mp3",
+    "City_Skyline_Zone.mp3",
+    "Cloud_Cradle_Zone,_Act_K.mp3",
+    "Clucky_Farms_Zone.mp3",
+    "Coastal_Temple_Zone.mp3",
+    "Colosseum.mp3",
+    "Credits.mp3",
+    "Crimson_Core_Zone.mp3",
+    "Crystal_Abyss_Zone.mp3",
+    "Darkvile_Garden_Zone.mp3",
+    "Dark_Race.mp3",
+    "Dayonta_Speedway_Zone.mp3",
+    "Death_Egg's_Eye.mp3",
+    "Desert_Palace_Zone.mp3",
+    "Diamond_Square_Classic.mp3",
+    "Diamond_Square_Zone.mp3",
+    "Dried_Battledune_Zone.mp3",
+    "Eerie_Grove_Zone.mp3",
+    "Eggman's_Nightclub_Zone.mp3",
+    "Egg_Quarters.mp3",
+    "Egg_Zeppelin_Zone.mp3",
+    "FZ_Silence.mp3",
+    "Fakery_Way.mp3",
+    "Fantastic_Tabernacle_Zone.mp3",
+    "Grand_Metropolis.mp3",
+    "Green_Hills_Zone.mp3",
+    "Grow.mp3",
+    "Hill_Top_Zone.mp3",
+    "Invincibility.mp3",
+    "KKR_Ganbare_Dochu_2.mp3",
+    "Kart_Airlines_Zone.mp3",
+    "Kodachrome_Void_Zone.mp3",
+    "Lake_Margorite_Zone.mp3",
+    "MK64_Block_Fort_&_Double_Deck.mp3",
+    "MKDS_Peach_Gardens.mp3",
+    "MKSC_Rainbow_Road.mp3",
+    "MKSC_Sky_Garden.mp3",
+    "Main_Theme.mp3",
+    "Marble_Zone.mp3",
+    "Megablock_Castle_Zone.mp3",
+    "Mementos.mp3",
+    "Midnight_Channel.mp3",
+    "Midnight_Meadow_Zone.mp3",
+    "Misty_Maze_Zone.mp3",
+    "Municipal_Meadow_Zone.mp3",
+    "Northern_District_Zone.mp3",
+    "Opulence_Zone.mp3",
+    "PWR_Retro_Maze.mp3",
+    "Paradise_Hill_Zone.mp3",
+    "Peach's_Castle.mp3",
+    "Petroleum_Refinery_Zone.mp3",
+    "Pleasure_Castle.mp3",
+    "Power_Plant.mp3",
+    "Race_Finish_(Cool).mp3",
+    "Race_Finish_(Lose).mp3",
+    "Race_Finish_(NO_CONTEST).mp3",
+    "Race_Finish_(Win).mp3",
+    "Red_Barrage_Area.mp3",
+    "Replay_Hut.mp3",
+    "Rusty_Rig_Zone.mp3",
+    "SD2_Balloon_Panic.mp3",
+    "SMK_Battle_Course_1,_2,_&_4.mp3",
+    "SMK_Battle_Course_3.mp3",
+    "SMK_Bowser_Castle_3.mp3",
+    "SMK_Donut_Plains_1.mp3",
+    "SMK_Ghost_Valley_2.mp3",
+    "SMK_Mario_Circuit_2.mp3",
+    "SMK_Rainbow_Road.mp3",
+    "SMK_Vanilla_Lake_2.mp3",
+    "SM_Special_Stage_3.mp3",
+    "SRB2_Frozen_Night_Zone.mp3",
+    "SRB2_Meadow_Match_Zone.mp3",
+    "Sand_Valley_Zone.mp3",
+    "Sapphire_Coast_Zone.mp3",
+    "Silvercloud_Island_Zone.mp3",
+    "Sonic_Speedway_Zone.mp3",
+    "Spotlight_Syndicate_Zone.mp3",
+    "Staff_Attack_&_Battle_Intermission.mp3",
+    "Starting_Countdown.mp3",
+    "Starting_Countdown_(Encore).mp3",
+    "Sub-Zero_Peak_Zone.mp3",
+    "Sunbeam_Paradise_Zone.mp3",
+    "Tails'_Lab.mp3",
+    "Techno_Hill_Zone.mp3",
+    "Tinkerer's_Arena_Zone.mp3",
+    "Toxic_Palace_Zone.mp3",
+    "Tricircle_Marina_Zone.mp3",
+    "Trigger_Happy_Havoc.mp3",
+    "Twinkle_Cart.mp3",
+    "Vanilla_Hotel_Zone.mp3",
+    "Virtual_Highway_Zone.mp3",
+    "Volcanic_Valley_Zone.mp3",
+    "Voting.mp3",
+    "Voting_(Roulette).mp3",
+    "Voting_(Roulette_End).mp3",
+    "Waiting_To_Join.mp3",
+    "battal_BOWL_Match.mp3"
+]
+
+
+class WadFile(object):
+    def __init__(self, source=None, filename=None):
+        self._files = {}
+        if not source:
+            source = open(filename, 'rb')
+        self._source = source
+        header = source.read(12)
+        (magic, numFiles, dirOffset) = struct.unpack('<III', header)
+        source.seek(dirOffset)
+        for i in range(numFiles):
+            dirent = source.read(16)
+            (pos, size, name) = struct.unpack('<II8s', dirent)
+            name = name.replace(b'\0', b'').decode()
+            self._files[name] = { "pos": pos, "size": size }
+
+    def namelist(self):
+        return self._files.keys()
+    
+    def open(self, name, mode='r'):
+        dirent = self._files[name]
+        self._source.seek(dirent['pos'])
+        return io.BytesIO(self._source.read(dirent['size']))
+
 def signal_handler(sig, frame):
     print('\nCancelled')
     # Perform any cleanup here
@@ -428,6 +577,8 @@ def get_level_names(pk3, levels, soc):
                 continue
             for level in currentLevel:
                 [key, value] = line.split('=', 1)
+                if key.strip().lower() == "usage":
+                    levels[level]["title"] = value.strip()
                 levels[level][key.strip().lower()] = value.strip()
             # print(currentLevel)
     return levels
@@ -437,6 +588,209 @@ def valid_positive_int(value):
     if ivalue < 1:
         raise argparse.ArgumentTypeError(f"Invalid value: {value}. The value must be an integer greater than or equal to 1.")
     return ivalue
+
+def extract_music(pk3, args):
+    addon = args.addon
+    output_location = args.output_location
+    encore_mode = args.encore
+    no_fade = args.no_fade
+    original_volume = args.original_volume
+    file_type = args.file_type if args.file_type.startswith('.') else "." + args.file_type
+    loop_count = args.loop_count
+    verbose = args.verbose
+    dry = args.dry_run
+
+    all_entries = pk3.namelist()
+
+    musicdef_files = set()
+    music_files = set()
+
+    
+    for entry in all_entries:
+        if "MUSICDEF" in entry:
+            musicdef_files.add(entry)
+        if Path(entry).name.startswith("O_"):
+            music_files.add(entry)
+    def_list = list(musicdef_files)
+    music_list = list(music_files)
+
+    # file_paths = [
+    #     "Music/Sekhedsu/O_KOVOZ",
+    #     "Music/Tape/O_CACRZ",
+    #     "Music/Tape/O_CHSEZ",
+    #     "Music/Tape/O_WHWAZ",
+    #     "Music/Tape/O_NOSHZ.it",
+    #     "Music/Tape/O_DOPE1.it",
+    #     "Music/Tape/O_CRISZ.mod",
+    #     "Music/Tape/O_MYGAZ",
+    #     "Music/Tape/O_BAFOZ",
+    #     "Music/Tape/O_TIARZ",
+    #     "Music/Tape/O_HOHOZ",
+    #     "Music/Tape/O_HYPLZ",
+    #     "Music/Tape/O_THTOZ",
+    #     "Music/Tape/O_TRMAZ.xm"
+    # ]
+
+
+    songs = {}
+    for soc_name in def_list:
+        levels = get_level_names(pk3, songs, soc_name)
+
+    # print(json.dumps(songs, indent=4))
+    # print(music_list)
+    os.makedirs(os.path.join(output_location), exist_ok=True)
+    progress = 1
+    for file in music_list:
+        fparts = file.split('.')
+        fname = fparts[0]
+        fext = ''
+        with pk3.open(file) as song:
+            binary = song.read()
+            if len(fparts) > 1:
+                fext = "." + fparts[1]
+            else:
+                fext = "." + get_file_extension(binary)
+            fname = fname.split('.')[0] + fext
+            with open(os.path.join(output_location, "tmp" + fext), "wb") as output:
+                if not dry:
+                    output.write(binary)
+                for key in songs.keys():
+                    parts = fname.split("O_")
+                    if parts[len(parts)-1].lower() == key+fext:
+                        song_name = os.path.join(output_location, key + file_type)
+                        sanitized_name = key
+                        volume = 1
+                        title = ""
+                        artist = ""
+                        track = ""
+                        track_num = ""
+                        disc_num = ""
+                        order_prefix = ""
+                        release_date = "2024-04-24T05:47:00-05:00"
+                        fade_length = "10" 
+                        if no_fade:
+                            fade_length = "0"
+                        if "track" in songs[key]:
+                            track = f' (Track {songs[key]["track"]})'
+                        if "title" in songs[key]:
+                            sanitized_name = sanitize_filename(songs[key]["title"] + track)
+                            order = get_track_number(sanitized_name)
+                            if not order == None:
+                                track_num = order["track"]
+                                disc_num = order["disc"]
+                                order_prefix = f'{disc_num}-{track_num} '
+                            song_name = os.path.join(output_location, order_prefix + sanitized_name + track + file_type)
+                            title = songs[key]["title"] + track
+                        if "volume" in songs[key] and not original_volume:
+                            volume = int(songs[key]["volume"].split(' #')[0])/100.0
+                        if "author" in songs[key]:
+                            artist = songs[key]["author"]
+                        if "originalcomposers" in songs[key]:
+                            if not artist == "":
+                                artist += ", "
+                            artist += songs[key]["originalcomposers"]
+                        command1 = [
+                                "vgmstream-cli",
+                                "-o", os.path.join(output_location, "tmp.wav"),
+                                "-l", f'{loop_count}',
+                                "-f", fade_length,
+                                os.path.join(output_location, "tmp" + fext)
+                        ]
+                        command2 = [
+                                "ffprobe",
+                                "-v", "error",
+                                "-select_streams", "a:0",
+                                "-show_entries", "stream=sample_rate",
+                                "-of", "default=noprint_wrappers=1:nokey=1",
+                                os.path.join(output_location, "tmp.wav")
+                        ]
+                        if verbose:
+                            cols = shutil.get_terminal_size().columns
+                            print("=" * cols)
+                        print(f'[{progress}/{len(music_list)}]','Converting: \t', fparts[0]+fext, '=>', song_name)
+                        progress+=1
+                        if verbose:
+                            print(key, json.dumps(songs[key], indent=4))
+                        if dry:
+                            continue
+                        try:
+                            if verbose:
+                                print("Running: \t", ' '.join(command1))
+                            subprocess.run(command1, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                            if verbose:
+                                print("Running: \t", ' '.join(command2))
+                            result = subprocess.run(command2, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                            sample_rate = result.stdout.strip()
+                            if verbose:
+                                print("Sample Rate: \t", sample_rate)
+                            asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
+                            command3 = [
+                                    "ffmpeg",
+                                    "-i", os.path.join(output_location, "tmp.wav"),
+                                    "-metadata", f'title={title}',
+                                    "-metadata", f'artist={artist}',
+                                    "-metadata", f'track={track_num}',
+                                    "-metadata", f'disc={disc_num}',
+                                    "-metadata", f'date={release_date}',
+                                    "-metadata", f'album_artist=Kart Krew',
+                                    "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
+                                    "-filter:a", f'volume={volume}{asetrate}',
+                                    "-y",
+                                    "-q:a", "0",
+                                    song_name
+                            ]
+                            if verbose:
+                                print("Running: \t", ' '.join(command3))
+                            subprocess.run(command3, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                            os.remove(os.path.join(output_location, "tmp.wav"))
+                            if verbose:
+                                print('done')
+                        except Exception as e:
+                            print('Error: ', "Could not convert with vgmstream-cli")
+                            print('Warning: ',"Falling back to ffmpeg")
+                            try:
+                                command2 = [
+                                        "ffprobe",
+                                        "-v", "error",
+                                        "-select_streams", "a:0",
+                                        "-show_entries", "stream=sample_rate",
+                                        "-of", "default=noprint_wrappers=1:nokey=1",
+                                        os.path.join(output_location, "tmp"+fext)
+                                ]
+                                if verbose:
+                                    print("Running: \t", ' '.join(command2))
+                                result = subprocess.run(command2, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                                sample_rate = result.stdout.strip()
+                                if verbose:
+                                    print("Sample Rate: \t", sample_rate)
+                                asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
+                                # print("Sample Rate:", sample_rate)
+                                command3 = [
+                                        "ffmpeg",
+                                        "-i", os.path.join(output_location, "tmp"+fext),
+                                        "-metadata", f'title={title}',
+                                        "-metadata", f'artist={artist}',
+                                        "-metadata", f'track={track_num}',
+                                        "-metadata", f'disc={disc_num}',
+                                        "-metadata", f'date={release_date}',
+                                        "-metadata", f'album_artist=Kart Krew',
+                                        "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
+                                        "-filter:a", f'volume={volume}{asetrate}',
+                                        "-y",
+                                        "-q:a", "0",
+                                        song_name
+                                ]
+                                if verbose:
+                                    print("Running: \t", ' '.join(command3))
+                                subprocess.run(command3, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                                if verbose:
+                                    print('done')
+                            except:
+                                print('Error: \t', 'Could not convert with ffmpeg. Exiting program')
+                                sys.exit(0)
+                        # break
+
+            os.remove(os.path.join(output_location, "tmp"+fext))
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
@@ -457,207 +811,12 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-    # Now you can access the arguments using args
     addon = args.addon
-    output_location = args.output_location
-    encore_mode = args.encore
-    no_fade = args.no_fade
-    original_volume = args.original_volume
-    file_type = args.file_type if args.file_type.startswith('.') else "." + args.file_type
-    loop_count = args.loop_count
-    verbose = args.verbose
-    dry = args.dry_run
 
     if Path(addon).suffix == ".pk3":
         with zipfile.ZipFile(addon, 'r') as pk3:
-            all_entries = pk3.namelist()
-
-            musicdef_files = set()
-            music_files = set()
-
-            
-            for entry in all_entries:
-                if "MUSICDEF" in entry:
-                    musicdef_files.add(entry)
-                if "/O_" in entry:
-                    music_files.add(entry)
-            def_list = list(musicdef_files)
-            music_list = list(music_files)
-
-            # file_paths = [
-            #     "Music/Sekhedsu/O_KOVOZ",
-            #     "Music/Tape/O_CACRZ",
-            #     "Music/Tape/O_CHSEZ",
-            #     "Music/Tape/O_WHWAZ",
-            #     "Music/Tape/O_NOSHZ.it",
-            #     "Music/Tape/O_DOPE1.it",
-            #     "Music/Tape/O_CRISZ.mod",
-            #     "Music/Tape/O_MYGAZ",
-            #     "Music/Tape/O_BAFOZ",
-            #     "Music/Tape/O_TIARZ",
-            #     "Music/Tape/O_HOHOZ",
-            #     "Music/Tape/O_HYPLZ",
-            #     "Music/Tape/O_THTOZ",
-            #     "Music/Tape/O_TRMAZ.xm"
-            # ]
-
-
-            songs = {}
-            for soc_name in def_list:
-                levels = get_level_names(pk3, songs, soc_name)
-
-            # print(json.dumps(songs, indent=4))
-            # print(music_list)
-            os.makedirs(os.path.join(output_location), exist_ok=True)
-            progress = 1
-            for file in music_list:
-                fparts = file.split('.')
-                fname = fparts[0]
-                fext = ''
-                with pk3.open(file) as song:
-                    binary = song.read()
-                    if len(fparts) > 1:
-                        fext = "." + fparts[1]
-                    else:
-                        fext = "." + get_file_extension(binary)
-                    fname = fname.split('.')[0] + fext
-                    with open(os.path.join(output_location, "tmp" + fext), "wb") as output:
-                        if not dry:
-                            output.write(binary)
-                        for key in songs.keys():
-                            parts = fname.split("O_")
-                            if parts[len(parts)-1].lower() == key+fext:
-                                song_name = os.path.join(output_location, key + file_type)
-                                sanitized_name = key
-                                volume = 1
-                                title = ""
-                                artist = ""
-                                track = ""
-                                track_num = ""
-                                disc_num = ""
-                                order_prefix = ""
-                                release_date = "2024-04-24T05:47:00-05:00"
-                                fade_length = "10" 
-                                if no_fade:
-                                    fade_length = "0"
-                                if "track" in songs[key]:
-                                    track = f' (Track {songs[key]["track"]})'
-                                if "title" in songs[key]:
-                                    sanitized_name = sanitize_filename(songs[key]["title"] + track)
-                                    order = get_track_number(sanitized_name)
-                                    if not order == None:
-                                        track_num = order["track"]
-                                        disc_num = order["disc"]
-                                        order_prefix = f'{disc_num}-{track_num} '
-                                    song_name = os.path.join(output_location, order_prefix + sanitized_name + track + file_type)
-                                    title = songs[key]["title"] + track
-                                if "volume" in songs[key] and not original_volume:
-                                    volume = int(songs[key]["volume"].split(' #')[0])/100.0
-                                if "author" in songs[key]:
-                                    artist = songs[key]["author"]
-                                if "originalcomposers" in songs[key]:
-                                    if not artist == "":
-                                        artist += ", "
-                                    artist += songs[key]["originalcomposers"]
-                                command1 = [
-                                        "vgmstream-cli",
-                                        "-o", os.path.join(output_location, "tmp.wav"),
-                                        "-l", f'{loop_count}',
-                                        "-f", fade_length,
-                                        os.path.join(output_location, "tmp" + fext)
-                                ]
-                                command2 = [
-                                        "ffprobe",
-                                        "-v", "error",
-                                        "-select_streams", "a:0",
-                                        "-show_entries", "stream=sample_rate",
-                                        "-of", "default=noprint_wrappers=1:nokey=1",
-                                        os.path.join(output_location, "tmp.wav")
-                                ]
-                                if verbose:
-                                    cols = shutil.get_terminal_size().columns
-                                    print("=" * cols)
-                                print(f'[{progress}/{len(music_list)}]','Converting: \t', fparts[0]+fext, '=>', song_name)
-                                progress+=1
-                                if verbose:
-                                    print(key, json.dumps(songs[key], indent=4))
-                                if dry:
-                                    continue
-                                try:
-                                    if verbose:
-                                        print("Running: \t", ' '.join(command1))
-                                    subprocess.run(command1, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                                    if verbose:
-                                        print("Running: \t", ' '.join(command2))
-                                    result = subprocess.run(command2, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                                    sample_rate = result.stdout.strip()
-                                    if verbose:
-                                        print("Sample Rate: \t", sample_rate)
-                                    asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
-                                    command3 = [
-                                            "ffmpeg",
-                                            "-i", os.path.join(output_location, "tmp.wav"),
-                                            "-metadata", f'title={title}',
-                                            "-metadata", f'artist={artist}',
-                                            "-metadata", f'track={track_num}',
-                                            "-metadata", f'disc={disc_num}',
-                                            "-metadata", f'date={release_date}',
-                                            "-metadata", f'album_artist=Kart Krew',
-                                            "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
-                                            "-filter:a", f'volume={volume}{asetrate}',
-                                            "-y",
-                                            "-q:a", "0",
-                                            song_name
-                                    ]
-                                    if verbose:
-                                        print("Running: \t", ' '.join(command3))
-                                    subprocess.run(command3, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                                    os.remove(os.path.join(output_location, "tmp.wav"))
-                                    if verbose:
-                                        print('done')
-                                except Exception as e:
-                                    print('Error: ', "Could not convert with vgmstream-cli")
-                                    print('Warning: ',"Falling back to ffmpeg")
-                                    try:
-                                        command2 = [
-                                                "ffprobe",
-                                                "-v", "error",
-                                                "-select_streams", "a:0",
-                                                "-show_entries", "stream=sample_rate",
-                                                "-of", "default=noprint_wrappers=1:nokey=1",
-                                                os.path.join(output_location, "tmp"+fext)
-                                        ]
-                                        if verbose:
-                                            print("Running: \t", ' '.join(command2))
-                                        result = subprocess.run(command2, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                                        sample_rate = result.stdout.strip()
-                                        if verbose:
-                                            print("Sample Rate: \t", sample_rate)
-                                        asetrate = f',asetrate={sample_rate}*{encore_sample_rate_multiplier}' if encore_mode else ''
-                                        # print("Sample Rate:", sample_rate)
-                                        command3 = [
-                                                "ffmpeg",
-                                                "-i", os.path.join(output_location, "tmp"+fext),
-                                                "-metadata", f'title={title}',
-                                                "-metadata", f'artist={artist}',
-                                                "-metadata", f'track={track_num}',
-                                                "-metadata", f'disc={disc_num}',
-                                                "-metadata", f'date={release_date}',
-                                                "-metadata", f'album_artist=Kart Krew',
-                                                "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
-                                                "-filter:a", f'volume={volume}{asetrate}',
-                                                "-y",
-                                                "-q:a", "0",
-                                                song_name
-                                        ]
-                                        if verbose:
-                                            print("Running: \t", ' '.join(command3))
-                                        subprocess.run(command3, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                                        if verbose:
-                                            print('done')
-                                    except:
-                                        print('Error: \t', 'Could not convert with ffmpeg. Exiting program')
-                                        sys.exit(0)
-                                # break
-
-                    os.remove(os.path.join(output_location, "tmp"+fext))
+            extract_music(pk3, args)
+    if Path(addon).suffix == ".wad" or Path(addon).suffix == ".kart":
+        wad = WadFile(open(addon, 'rb'))
+        extract_music(wad, args)
+    # Now you can access the arguments using args
