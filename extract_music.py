@@ -350,129 +350,129 @@ album_order = [
     ]
 ]
 
-filenames = [
-    "3_Color_Drive_Zone.mp3",
-    "Ancient_Tomb_Zone.mp3",
-    "Arid_Sands.mp3",
-    "Armored_Armadillo.mp3",
-    "Aurora_Atoll_Zone.mp3",
-    "Bad_Taste_Aquarium.mp3",
-    "Barren_Badlands_Zone.mp3",
-    "Battle_Finish_(Cool).mp3",
-    "Battle_Finish_(Lose).mp3",
-    "Battle_Finish_(Win).mp3",
-    "Black_Bliss_Zone.mp3",
-    "Blue_Mountain_Classic.mp3",
-    "Blue_Mountain_Zone.mp3",
-    "Boiling_Bedrock_Zone.mp3",
-    "Bumper_Carts.mp3",
-    "CD_Special_Stage_1.mp3",
-    "CK_Chao_Circuit_1.mp3",
-    "CK_Chao_Circuit_2.mp3",
-    "CK_Cloud_Tops_1.mp3",
-    "CK_Cloud_Tops_2.mp3",
-    "CK_Dungeon_Maze.mp3",
-    "CK_Regal_Raceway.mp3",
-    "Canyon_Rush_Zone.mp3",
-    "Casino_Resort_Zone.mp3",
-    "Challenger_Joins.mp3",
-    "Chemical_Facility_Zone.mp3",
-    "City_Skyline_Zone.mp3",
-    "Cloud_Cradle_Zone,_Act_K.mp3",
-    "Clucky_Farms_Zone.mp3",
-    "Coastal_Temple_Zone.mp3",
-    "Colosseum.mp3",
-    "Credits.mp3",
-    "Crimson_Core_Zone.mp3",
-    "Crystal_Abyss_Zone.mp3",
-    "Darkvile_Garden_Zone.mp3",
-    "Dark_Race.mp3",
-    "Dayonta_Speedway_Zone.mp3",
-    "Death_Egg's_Eye.mp3",
-    "Desert_Palace_Zone.mp3",
-    "Diamond_Square_Classic.mp3",
-    "Diamond_Square_Zone.mp3",
-    "Dried_Battledune_Zone.mp3",
-    "Eerie_Grove_Zone.mp3",
-    "Eggman's_Nightclub_Zone.mp3",
-    "Egg_Quarters.mp3",
-    "Egg_Zeppelin_Zone.mp3",
-    "FZ_Silence.mp3",
-    "Fakery_Way.mp3",
-    "Fantastic_Tabernacle_Zone.mp3",
-    "Grand_Metropolis.mp3",
-    "Green_Hills_Zone.mp3",
-    "Grow.mp3",
-    "Hill_Top_Zone.mp3",
-    "Invincibility.mp3",
-    "KKR_Ganbare_Dochu_2.mp3",
-    "Kart_Airlines_Zone.mp3",
-    "Kodachrome_Void_Zone.mp3",
-    "Lake_Margorite_Zone.mp3",
-    "MK64_Block_Fort_&_Double_Deck.mp3",
-    "MKDS_Peach_Gardens.mp3",
-    "MKSC_Rainbow_Road.mp3",
-    "MKSC_Sky_Garden.mp3",
-    "Main_Theme.mp3",
-    "Marble_Zone.mp3",
-    "Megablock_Castle_Zone.mp3",
-    "Mementos.mp3",
-    "Midnight_Channel.mp3",
-    "Midnight_Meadow_Zone.mp3",
-    "Misty_Maze_Zone.mp3",
-    "Municipal_Meadow_Zone.mp3",
-    "Northern_District_Zone.mp3",
-    "Opulence_Zone.mp3",
-    "PWR_Retro_Maze.mp3",
-    "Paradise_Hill_Zone.mp3",
-    "Peach's_Castle.mp3",
-    "Petroleum_Refinery_Zone.mp3",
-    "Pleasure_Castle.mp3",
-    "Power_Plant.mp3",
-    "Race_Finish_(Cool).mp3",
-    "Race_Finish_(Lose).mp3",
-    "Race_Finish_(NO_CONTEST).mp3",
-    "Race_Finish_(Win).mp3",
-    "Red_Barrage_Area.mp3",
-    "Replay_Hut.mp3",
-    "Rusty_Rig_Zone.mp3",
-    "SD2_Balloon_Panic.mp3",
-    "SMK_Battle_Course_1,_2,_&_4.mp3",
-    "SMK_Battle_Course_3.mp3",
-    "SMK_Bowser_Castle_3.mp3",
-    "SMK_Donut_Plains_1.mp3",
-    "SMK_Ghost_Valley_2.mp3",
-    "SMK_Mario_Circuit_2.mp3",
-    "SMK_Rainbow_Road.mp3",
-    "SMK_Vanilla_Lake_2.mp3",
-    "SM_Special_Stage_3.mp3",
-    "SRB2_Frozen_Night_Zone.mp3",
-    "SRB2_Meadow_Match_Zone.mp3",
-    "Sand_Valley_Zone.mp3",
-    "Sapphire_Coast_Zone.mp3",
-    "Silvercloud_Island_Zone.mp3",
-    "Sonic_Speedway_Zone.mp3",
-    "Spotlight_Syndicate_Zone.mp3",
-    "Staff_Attack_&_Battle_Intermission.mp3",
-    "Starting_Countdown.mp3",
-    "Starting_Countdown_(Encore).mp3",
-    "Sub-Zero_Peak_Zone.mp3",
-    "Sunbeam_Paradise_Zone.mp3",
-    "Tails'_Lab.mp3",
-    "Techno_Hill_Zone.mp3",
-    "Tinkerer's_Arena_Zone.mp3",
-    "Toxic_Palace_Zone.mp3",
-    "Tricircle_Marina_Zone.mp3",
-    "Trigger_Happy_Havoc.mp3",
-    "Twinkle_Cart.mp3",
-    "Vanilla_Hotel_Zone.mp3",
-    "Virtual_Highway_Zone.mp3",
-    "Volcanic_Valley_Zone.mp3",
-    "Voting.mp3",
-    "Voting_(Roulette).mp3",
-    "Voting_(Roulette_End).mp3",
-    "Waiting_To_Join.mp3",
-    "battal_BOWL_Match.mp3"
+srb2kart = [
+    ["Main_Theme",
+    "Staff_Attack_&_Battle_Intermission",
+    "Green_Hills_Zone",
+    "Dark_Race",
+    "Northern_District_Zone",
+    "Darkvile_Garden_Zone",
+    "Dayonta_Speedway_Zone",
+    "Egg_Zeppelin_Zone",
+    "Sonic_Speedway_Zone",
+    "Hill_Top_Zone",
+    "Misty_Maze_Zone",
+    "Grand_Metropolis",
+    "Sunbeam_Paradise_Zone",
+    "Diamond_Square_Zone",
+    "Midnight_Meadow_Zone",
+    "Twinkle_Cart",
+    "Pleasure_Castle",
+    "Paradise_Hill_Zone",
+    "Sub-Zero_Peak_Zone",
+    "Sapphire_Coast_Zone",
+    "Sand_Valley_Zone",
+    "Megablock_Castle_Zone",
+    "Canyon_Rush_Zone",
+    "Casino_Resort_Zone",
+    "Silvercloud_Island_Zone",
+    "Blue_Mountain_Zone",
+    "Petroleum_Refinery_Zone",
+    "Desert_Palace_Zone",
+    "Aurora_Atoll_Zone",
+    "Barren_Badlands_Zone",
+    "Red_Barrage_Area",
+    "Midnight_Channel",
+    "Vanilla_Hotel_Zone",
+    "Toxic_Palace_Zone",
+    "Ancient_Tomb_Zone",
+    "Cloud_Cradle_Zone,_Act_K",
+    "Volcanic_Valley_Zone",
+    "Kodachrome_Void_Zone",
+    "Boiling_Bedrock_Zone",
+    "Egg_Quarters",
+    "Virtual_Highway_Zone",
+    "Eggman's_Nightclub_Zone",
+    "KKR_Ganbare_Dochu_2",
+    "CK_Chao_Circuit_1",
+    "CK_Chao_Circuit_2",
+    "CK_Cloud_Tops_2",
+    "CK_Regal_Raceway",
+    "SD2_Balloon_Panic",
+    "SM_Special_Stage_3",
+    "MKSC_Sky_Garden",
+    "MKDS_Peach_Gardens",
+    "MKSC_Rainbow_Road",
+    "SMK_Donut_Plains_1",
+    "SMK_Mario_Circuit_2",
+    "SMK_Ghost_Valley_2",
+    "SMK_Bowser_Castle_3",
+    "SMK_Vanilla_Lake_2",
+    "Lake_Margorite_Zone",
+    "Coastal_Temple_Zone",
+    "Kart_Airlines_Zone",
+    "Opulence_Zone",
+    "Crimson_Core_Zone"],
+    ["Municipal_Meadow_Zone",
+    "Tricircle_Marina_Zone",
+    "Tinkerer's_Arena_Zone",
+    "Clucky_Farms_Zone",
+    "Techno_Hill_Zone",
+    "Marble_Zone",
+    "Colosseum",
+    "Dried_Battledune_Zone",
+    "Eerie_Grove_Zone",
+    "Rusty_Rig_Zone",
+    "Fantastic_Tabernacle_Zone",
+    "Bad_Taste_Aquarium",
+    "Spotlight_Syndicate_Zone",
+    "City_Skyline_Zone",
+    "Fakery_Way",
+    "Bumper_Carts",
+    "Death_Egg's_Eye",
+    "Power_Plant",
+    "Tails'_Lab",
+    "Armored_Armadillo",
+    "Trigger_Happy_Havoc",
+    "Mementos",
+    "CD_Special_Stage_1",
+    "SMK_Battle_Course_1,_2,_&_4",
+    "SMK_Battle_Course_3",
+    "MK64_Block_Fort_&_Double_Deck",
+    "Crystal_Abyss_Zone",
+    "Peach's_Castle",
+    "Arid_Sands",
+    "Chemical_Facility_Zone",
+    "3_Color_Drive_Zone",
+    "CK_Cloud_Tops_1",
+    "CK_Dungeon_Maze",
+    "Diamond_Square_Classic",
+    "PWR_Retro_Maze",
+    "SRB2_Frozen_Night_Zone",
+    "FZ_Silence",
+    "SMK_Rainbow_Road",
+    "SRB2_Meadow_Match_Zone",
+    "battal_BOWL_Match",
+    "Blue_Mountain_Classic",
+    "Black_Bliss_Zone"],
+    ["Voting",
+    "Voting_(Roulette)",
+    "Voting_(Roulette_End)",
+    "Invincibility",
+    "Grow",
+    "Starting_Countdown",
+    "Starting_Countdown_(Encore)",
+    "Race_Finish_(Win)",
+    "Race_Finish_(Cool)",
+    "Race_Finish_(Lose)",
+    "Race_Finish_(NO_CONTEST)",
+    "Battle_Finish_(Win)",
+    "Battle_Finish_(Cool)",
+    "Battle_Finish_(Lose)",
+    "Waiting_To_Join",
+    "Challenger_Joins",
+    "Credits",
+    "Replay_Hut"]
 ]
 
 
@@ -508,6 +508,10 @@ def get_track_number(file_name):
     for i in range(0, len(album_order)):
         for j in range(0, len(album_order[i])):
             if album_order[i][j]['name'] == file_name and addon.endswith(album_order[i][j]['source']):
+                return {'disc': i+1, 'track': j+1}
+    for i in range(0, len(srb2kart)):
+        for j in range(0, len(srb2kart[i])):
+            if srb2kart[i][j] == file_name:
                 return {'disc': i+1, 'track': j+1}
     return None
 
@@ -577,8 +581,6 @@ def get_level_names(pk3, levels, soc):
                 continue
             for level in currentLevel:
                 [key, value] = line.split('=', 1)
-                if key.strip().lower() == "usage":
-                    levels[level]["title"] = value.strip()
                 levels[level][key.strip().lower()] = value.strip()
             # print(currentLevel)
     return levels
@@ -662,11 +664,12 @@ def extract_music(pk3, args):
                         volume = 1
                         title = ""
                         artist = ""
+                        album = ""
                         track = ""
                         track_num = ""
                         disc_num = ""
                         order_prefix = ""
-                        release_date = "2024-04-24T05:47:00-05:00"
+                        release_date = ""
                         fade_length = "10" 
                         if no_fade:
                             fade_length = "0"
@@ -681,6 +684,20 @@ def extract_music(pk3, args):
                                 order_prefix = f'{disc_num}-{track_num} '
                             song_name = os.path.join(output_location, order_prefix + sanitized_name + track + file_type)
                             title = songs[key]["title"] + track
+                            album = 'Dr. Robotnik\'s Ring Racers'
+                            release_date = "2024-04-24T05:47:00-05:00"
+                        if "usage" in songs[key]:
+                            sanitized_name = sanitize_filename(songs[key]["source"].split('_-_')[0].replace('_', ' '))
+                            artist = songs[key]["source"].split('_-_')[1].replace('_', ' ')
+                            order = get_track_number(songs[key]['usage'])
+                            if not order == None:
+                                track_num = order["track"]
+                                disc_num = order["disc"]
+                                order_prefix = f'{disc_num}-{track_num} '
+                            song_name = os.path.join(output_location, order_prefix + sanitized_name + track + file_type)
+                            title = songs[key]["source"].split('_-_')[0].replace('_', ' ')
+                            album = 'SRB2Kart'
+                            release_date = "2018"
                         if "volume" in songs[key] and not original_volume:
                             volume = int(songs[key]["volume"].split(' #')[0])/100.0
                         if "author" in songs[key]:
@@ -733,7 +750,7 @@ def extract_music(pk3, args):
                                     "-metadata", f'disc={disc_num}',
                                     "-metadata", f'date={release_date}',
                                     "-metadata", f'album_artist=Kart Krew',
-                                    "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
+                                    "-metadata", f'album={album}',
                                     "-filter:a", f'volume={volume}{asetrate}',
                                     "-y",
                                     "-q:a", "0",
@@ -774,7 +791,7 @@ def extract_music(pk3, args):
                                         "-metadata", f'disc={disc_num}',
                                         "-metadata", f'date={release_date}',
                                         "-metadata", f'album_artist=Kart Krew',
-                                        "-metadata", f'album=Dr. Robotnik\'s Ring Racers',
+                                        "-metadata", f'album={album}',
                                         "-filter:a", f'volume={volume}{asetrate}',
                                         "-y",
                                         "-q:a", "0",
