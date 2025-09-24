@@ -159,7 +159,7 @@ function parseReplay(url) {
   reader.seek(0x0C);
   const version = reader.readByte() + "." + reader.readByte();
 
-  reader.seek(0x10);
+  const ghostVersion = reader.readInt(2);
   const replayTitle = reader.readString();
 
   reader.seek(0x64);
@@ -185,7 +185,15 @@ function parseReplay(url) {
     addonFiles.push(filename);
   }
 
-  const numSkins = reader.readByte();
+  let numSkins;
+  if (ghostVersion >= 0x000E) {
+    numSkins = reader.readInt(2);
+    console.log(numSkins);
+  }
+  else {
+    numSkins = reader.readByte();
+    console.log(numSkins);
+  }
   const skinList = [];
   for (let i = 0; i < numSkins; i++) {
     const pos = reader.cursor;
