@@ -87,64 +87,103 @@ class DriveReader {
     return str;
   }
 
+  readUBJContainerParams() {
+    const meta = {
+      type: null,
+      count: null,
+    };
+    let type = this.data[this.cursor];
+    if (type == '$') {
+      this.skip(1);
+      meta.type = this.readByte();
+      type = this.data[this.cursor];
+    }
+    if (type == '#') {
+      this.skip(1);
+      meta.count = this.readUBJValue();
+    }
+    return meta;
+  }
+
   readUBJArray() {
     const obj = [];
-    while (this.data[this.cursor] != ']') {
-      const val = this.readUBJValue();
-      obj.push(val); // this.readUBJValue());
+    const meta = this.readUBJContainerParams();
+    if (meta.count !== null) {
+      while (meta.count > 0) {
+        const val = this.readUBJValue(meta.type);
+        obj.push(val);
+        --meta.count;
+      }
+    } else {
+      while (this.data[this.cursor] != ']') {
+        const val = this.readUBJValue();
+        obj.push(val);
+      }
+      // throw away ]
+      this.readByte();
     }
-    // throw away ]
-this.readByte();
-return obj;
-}
-
-readUBJObject() {
-  const obj = {};
-  while (this.data[this.cursor] != '}') {
-    const key = this.readUBJString();
-    const val = this.readUBJValue();
-    obj[key] = val;
+    return obj;
   }
-  // throw away closing brace
-  this.readByte();
-  return obj;
-}
 
-readUBJValue() {
-  const type = String.fromCharCode(this.readByte());
-  switch (type) {
-    case 'i': // Int8
-      return this.readIntBE(1);
-    case 'U': // Uint8
-      return this.readUIntBE(1);
-    case 'I': // Int16
-      return this.readIntBE(2);
-    case 'l': // Int32
-      return this.readIntBE(4);
-    case 'L': // Int64
-      return this.readIntBE(8);
-    case 'd': // Float32
-      return this.readFloat(4, 'getFloat32');
-    case 'D': // Float64
-      return this.readFloat(8, 'getFloat32');
-    case 'S': // String
-      return this.readUBJString();
-    case '[': // Start of array
-      return this.readUBJArray();
+  readUBJObject() {
+    const obj = {};
+    const meta = this.readUBJContainerParams();
+    if (meta.count !== null) {
+      while (meta.count > 0) {
+        const key = this.readUBJString();
+        const val = this.readUBJValue(meta.type);
+        obj[key] = val;
+        --meta.count;
+      }
+    } else {
+      while (this.data[this.cursor] != ']') {
+        const key = this.readUBJString();
+        const val = this.readUBJValue();
+        obj[key] = val;
+      }
+      // throw away closing brace
+      this.readByte();
+    }
+    return obj;
+  }
+
+  readUBJValue(type = null) {
+    if (type === null) {
+      type = String.fromCharCode(this.readByte());
+    }
+    switch (type) {
+      case 'i': // Int8
+        return this.readIntBE(1);
+      case 'U': // Uint8
+        return this.readUIntBE(1);
+      case 'I': // Int16
+        return this.readIntBE(2);
+      case 'l': // Int32
+        return this.readIntBE(4);
+      case 'L': // Int64
+        return this.readIntBE(8);
+      case 'd': // Float32
+        return this.readFloat(4, 'getFloat32');
+      case 'D': // Float64
+        return this.readFloat(8, 'getFloat32');
+      case 'S': // String
+        return this.readUBJString();
+      case '[': // Start of array
+        return this.readUBJArray();
       case '{': // Start of object
         return this.readUBJObject();
-        case 'Z': // Null
+      case 'Z': // Null
         return null;
-        case 'T': // True
+      case 'T': // True
         return true;
-        case 'F': // False
+      case 'F': // False
         return false;
-        default:
+      default:
         throw new Error(`Invalid UBJSON type: ${type.charCodeAt(0)} at position ${this.cursor}`);
-      }
+    }
   }
 
-  _readFloat(len, getter) {
+  readFloat(len, getter) {
     let view = new DataView(new ArrayBuffer(len));
     for (let i = 0; i < len; i++) {
       view.setUint8(i, this.readByte());
@@ -188,11 +227,8 @@ function parseReplay(url) {
   let numSkins;
   if (ghostVersion >= 0x000E) {
     numSkins = reader.readInt(2);
-    console.log(numSkins);
-  }
-  else {
+  } else {
     numSkins = reader.readByte();
-    console.log(numSkins);
   }
   const skinList = [];
   for (let i = 0; i < numSkins; i++) {
