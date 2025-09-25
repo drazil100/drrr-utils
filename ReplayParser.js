@@ -165,7 +165,7 @@ class DriveReader {
       case 'd': // Float32
         return this.readFloat(4, 'getFloat32');
       case 'D': // Float64
-        return this.readFloat(8, 'getFloat32');
+        return this.readFloat(8, 'getFloat64');
       case 'S': // String
         return this.readUBJString();
       case '[': // Start of array
