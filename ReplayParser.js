@@ -136,7 +136,7 @@ class DriveReader {
         --meta.count;
       }
     } else {
-      while (this.data[this.cursor] != ']') {
+      while (this.data[this.cursor] != '}') {
         const key = this.readUBJString();
         const val = this.readUBJValue();
         obj[key] = val;
